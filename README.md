@@ -88,11 +88,11 @@ Settings → Pages.
   known résumé anti-pattern. Skills are grouped by the job they do instead.
 - **Updating the résumé PDF** — replace `assets/files/Govinda_Rai_Resume.pdf`;
   the filename is referenced from every page's footer.
-- **Photo** — `assets/img/portrait.jpg` (420x420, upscaled from a 167x167 source,
-  so it is a little soft). To improve it, overwrite that one file with a square
-  crop of at least 600x600; no markup changes needed. It is used in the hero, on
-  the contact page and in the social card (regenerate the card by re-running the
-  generator if you change it).
+- **Photo** — `assets/img/portrait.jpg` (720x720, cropped head-and-shoulders from
+  a 1254x1254 original so the circular frame lands on the face). Used in the hero,
+  on the contact page and in the social card. To replace it, drop in a square crop
+  already centred on the face — the CSS uses `object-position: 50% 50%`, so a
+  loose full-body square will render small.
 - **Animated figures are SVG, not GIF** — a few KB each, crisp at any zoom, and
   no colour banding. Each one's resting state is the *finished* drawing and the
   keyframes only fade layers in, so the diagram is never blank if animation does
