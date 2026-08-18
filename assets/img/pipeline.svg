@@ -15,6 +15,12 @@
     </filter>
   </defs>
 
+  <style>
+    /* hide the travelling pulse for readers who prefer reduced motion; every
+       other element in this diagram is static and visible by default */
+    @media (prefers-reduced-motion: reduce) { .pulse { display: none; } }
+  </style>
+
   <!-- ambient glow -->
   <ellipse cx="320" cy="130" rx="250" ry="70" fill="#3987e5" opacity="0.10" filter="url(#soft)"/>
 
@@ -22,7 +28,7 @@
   <path d="M56 130 H584" stroke="url(#track)" stroke-width="3" stroke-linecap="round" fill="none"/>
 
   <!-- travelling pulse -->
-  <circle r="5" fill="#9CCBFF">
+  <circle class="pulse" r="5" fill="#9CCBFF">
     <animateMotion dur="4.2s" repeatCount="indefinite" path="M56 130 H584"/>
     <animate attributeName="opacity" values="0;1;1;0" dur="4.2s" repeatCount="indefinite"/>
   </circle>

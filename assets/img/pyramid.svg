@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 320" role="img"
+     aria-label="Test automation pyramid: a broad base of fast unit and component tests, a middle band of API and integration tests, and a narrow tip of end-to-end UI tests, under a shift-left arrow.">
+  <defs>
+    <linearGradient id="py-e2e" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d95926"/><stop offset="1" stop-color="#F0916B"/>
+    </linearGradient>
+    <linearGradient id="py-api" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7B6CF0"/><stop offset="1" stop-color="#A99BF5"/>
+    </linearGradient>
+    <linearGradient id="py-unit" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#199e70"/><stop offset="1" stop-color="#4FCB9B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Resting state is fully visible; the keyframes only fade layers in, so a
+       renderer without CSS animation (or a reader who prefers reduced motion)
+       still gets the complete diagram. -->
+  <style>
+    .b { opacity: 1; }
+    @keyframes py-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: no-preference) {
+      .b { animation: py-in .55s ease-out both; transform-origin: 50% 100%; }
+      .b1 { animation-delay: .15s } .b2 { animation-delay: .5s }
+      .b3 { animation-delay: .85s } .b4 { animation-delay: 1.2s }
+      .b5 { animation-delay: 1.5s } .b6 { animation-delay: 1.8s }
+      .b7 { animation-delay: 2.1s }
+    }
+  </style>
+
+  <g stroke="#2B3648" stroke-width="1.5">
+    <line x1="70" y1="28" x2="70" y2="270"/>
+    <line x1="70" y1="270" x2="500" y2="270"/>
+  </g>
+  <g font-family="Segoe UI, sans-serif" font-size="10.5" fill="#76859A" letter-spacing="1.2">
+    <text x="62" y="36" text-anchor="end">SLOWER</text>
+    <text x="62" y="264" text-anchor="end">FASTER</text>
+    <text x="285" y="292" text-anchor="middle">NUMBER OF TESTS  →</text>
+  </g>
+
+  <!-- base: unit -->
+  <g class="b b1">
+    <path d="M180 184 L390 184 L440 254 L130 254 Z" fill="url(#py-unit)" fill-opacity=".93"/>
+    <text x="285" y="226" text-anchor="middle" font-family="Segoe UI, sans-serif"
+          font-size="13.5" font-weight="700" fill="#03150E">Unit &amp; component</text>
+  </g>
+  <g class="b b2">
+    <line x1="446" y1="222" x2="466" y2="222" stroke="#4FCB9B" stroke-width="1.3" stroke-dasharray="3 3"/>
+    <text x="472" y="219" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#4FCB9B" font-weight="650">Many, fast</text>
+    <text x="472" y="234" font-family="Segoe UI, sans-serif" font-size="10.5" fill="#76859A">NUnit</text>
+  </g>
+
+  <!-- middle: API -->
+  <g class="b b3">
+    <path d="M227 110 L343 110 L390 178 L180 178 Z" fill="url(#py-api)" fill-opacity=".93"/>
+    <text x="285" y="152" text-anchor="middle" font-family="Segoe UI, sans-serif"
+          font-size="13" font-weight="700" fill="#0C0821">API &amp; integration</text>
+  </g>
+  <g class="b b4">
+    <line x1="396" y1="150" x2="424" y2="150" stroke="#A99BF5" stroke-width="1.3" stroke-dasharray="3 3"/>
+    <text x="430" y="147" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#A99BF5" font-weight="650">The sweet spot</text>
+    <text x="430" y="162" font-family="Segoe UI, sans-serif" font-size="10.5" fill="#76859A">RestSharp · contracts</text>
+  </g>
+
+  <!-- tip: E2E -->
+  <g class="b b5">
+    <path d="M285 40 L343 104 L227 104 Z" fill="url(#py-e2e)" fill-opacity=".93"/>
+    <text x="285" y="90" text-anchor="middle" font-family="Segoe UI, sans-serif"
+          font-size="12" font-weight="700" fill="#1A1206">E2E / UI</text>
+  </g>
+  <g class="b b6">
+    <line x1="349" y1="80" x2="392" y2="80" stroke="#F0916B" stroke-width="1.3" stroke-dasharray="3 3"/>
+    <text x="398" y="77" font-family="Segoe UI, sans-serif" font-size="11.5" fill="#F0916B" font-weight="650">Few, high value</text>
+    <text x="398" y="92" font-family="Segoe UI, sans-serif" font-size="10.5" fill="#76859A">Playwright · Selenium</text>
+  </g>
+
+  <!-- shift-left -->
+  <g class="b b7">
+    <path d="M120 300 L470 300" stroke="#3987e5" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 5"/>
+    <path d="M132 294 L120 300 L132 306" stroke="#3987e5" stroke-width="2"
+          fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="295" y="316" text-anchor="middle" font-family="Segoe UI, sans-serif"
+          font-size="11" font-weight="700" fill="#8FBEF5" letter-spacing="1.1">SHIFT LEFT</text>
+  </g>
+</svg>

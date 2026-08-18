@@ -46,7 +46,7 @@
   <!-- ===================================================== hero ========== -->
   <section class="hero">
     <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div class="container">
+    <div class="container hero-split">
       <div class="reveal in">
         <span class="role-pill">
           <span class="live" aria-hidden="true"></span>
@@ -83,6 +83,15 @@
             Download résumé
           </a>
         </div>
+      </div>
+
+      <div class="hero-portrait reveal in" data-delay="2">
+        <img src="assets/img/portrait.jpg" width="420" height="420"
+             alt="Portrait of Govinda Rai" fetchpriority="high">
+        <span class="portrait-badge">
+          <span class="live" aria-hidden="true"></span>
+          Open to conversations
+        </span>
       </div>
     </div>
   </section>
@@ -289,9 +298,26 @@
         <p>Every stage automated, instrumented and AI-assisted — with observability feeding
            findings back into the next test cycle.</p>
       </div>
-      <div class="card spot reveal" data-delay="1" style="padding:clamp(20px,3.4vw,40px)">
+      <div class="figure spot reveal" data-delay="1">
         <img src="assets/img/pipeline.svg" width="640" height="260"
              alt="Continuous delivery pipeline with automated quality gates at build, automated tests, API and contract, performance and release stages, with an observability feedback loop returning to the start and AI assistance at every gate.">
+        <figcaption>Quality gates across the delivery pipeline, with observability feeding
+           findings back into the next cycle.</figcaption>
+      </div>
+
+      <div class="figure-grid" style="margin-top:18px">
+        <figure class="figure spot reveal" data-delay="1" style="margin:0">
+          <img src="assets/img/code-window.svg" width="640" height="366"
+               alt="Animated code editor window showing a Playwright test written in C# that navigates to a page, enters a VIN, selects a trim and asserts the result, finishing with a passing test.">
+          <figcaption>How the tests actually read — Playwright with C# and NUnit, page objects,
+             explicit expectations. Illustrative sample, not client code.</figcaption>
+        </figure>
+        <figure class="figure spot reveal" data-delay="2" style="margin:0">
+          <img src="assets/img/pyramid.svg" width="560" height="320"
+               alt="Animated test automation pyramid with a broad base of fast unit and component tests, a middle band of API and integration tests, and a narrow tip of end-to-end UI tests, under a shift-left arrow.">
+          <figcaption>The shape I aim every suite towards: weight in fast API and unit layers,
+             a thin, high-value end-to-end tip.</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -324,6 +350,13 @@
     </div>
   </div>
 </footer>
+
+<button class="to-top" type="button" aria-label="Back to top">
+  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 19V6m0 0l-6 6m6-6l6 6" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
 
 <script src="assets/js/main.js"></script>
 </body>

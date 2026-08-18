@@ -12,7 +12,8 @@ contact.html        Email, phone, LinkedIn, résumé, location, time zone
 404.html            Custom not-found page
 assets/css/         Single stylesheet with design tokens
 assets/js/          Mobile nav, scroll reveal, active-link, footer year
-assets/img/         Monogram favicon, pipeline SVG, social preview card
+assets/img/         portrait.jpg, monogram favicon, animated pipeline /
+                    code-window / pyramid SVGs, social preview card
 assets/files/       Résumé PDF (download target)
 ```
 
@@ -83,6 +84,14 @@ Settings → Pages.
   known résumé anti-pattern. Skills are grouped by the job they do instead.
 - **Updating the résumé PDF** — replace `assets/files/Govinda_Rai_Resume.pdf`;
   the filename is referenced from every page's footer.
-- **Photo** — the site uses a `GR` monogram. To switch to a photo, drop a square
-  image at `assets/img/portrait.jpg` and replace the `.plate-mono` div in
-  `index.html` with `<img class="plate-photo" src="assets/img/portrait.jpg" alt="Govinda Rai">`.
+- **Photo** — `assets/img/portrait.jpg` (420x420, upscaled from a 167x167 source,
+  so it is a little soft). To improve it, overwrite that one file with a square
+  crop of at least 600x600; no markup changes needed. It is used in the hero, on
+  the contact page and in the social card (regenerate the card by re-running the
+  generator if you change it).
+- **Animated figures are SVG, not GIF** — a few KB each, crisp at any zoom, and
+  no colour banding. Each one's resting state is the *finished* drawing and the
+  keyframes only fade layers in, so the diagram is never blank if animation does
+  not run; motion is wrapped in `prefers-reduced-motion: no-preference`.
+- **Interactive bits** — skills filter buttons, back-to-top, pointer spotlight on
+  cards, count-up figures, hover-pausable marquee, scroll progress.

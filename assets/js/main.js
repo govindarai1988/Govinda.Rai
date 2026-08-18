@@ -109,6 +109,49 @@
     });
   }
 
+  /* ------------------------------------------------------- skills filter --- */
+  var filterBar = document.querySelector(".filter-bar");
+  if (filterBar) {
+    var blocks = Array.prototype.slice.call(document.querySelectorAll("[data-group]"));
+    var countEl = document.querySelector(".filter-count");
+
+    var apply = function (want) {
+      var shown = 0;
+      blocks.forEach(function (b) {
+        var match = want === "all" || b.getAttribute("data-group") === want;
+        b.hidden = !match;
+        if (match) { shown++; }
+      });
+      if (countEl) {
+        countEl.textContent = shown + (shown === 1 ? " group" : " groups") + " shown";
+      }
+    };
+
+    filterBar.addEventListener("click", function (e) {
+      var btn = e.target.closest(".filter-btn");
+      if (!btn) { return; }
+      Array.prototype.forEach.call(filterBar.querySelectorAll(".filter-btn"), function (b) {
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
+      apply(btn.getAttribute("data-filter"));
+    });
+
+    apply("all");
+  }
+
+  /* ---------------------------------------------------------- back to top -- */
+  var top = document.querySelector(".to-top");
+  if (top) {
+    top.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+    });
+    var toggleTop = function () {
+      top.classList.toggle("show", window.scrollY > 700);
+    };
+    window.addEventListener("scroll", toggleTop, { passive: true });
+    toggleTop();
+  }
+
   /* --------------------------------------------------------- footer year --- */
   var year = document.querySelector("[data-year]");
   if (year) { year.textContent = new Date().getFullYear(); }

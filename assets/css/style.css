@@ -251,6 +251,9 @@ p:last-child { margin-bottom: 0; }
   font-size: clamp(2.9rem, 9.2vw, 6.6rem);
   line-height: .93; letter-spacing: -.042em; margin-bottom: 20px;
 }
+/* the portrait takes a third of the row, so cap the display size to stop
+   "AI." stranding on a line of its own */
+.hero-split .hero-name { font-size: clamp(2.4rem, 5.4vw, 4.4rem); }
 .hero-name .line { display: block; }
 
 .role-pill {
@@ -277,6 +280,124 @@ p:last-child { margin-bottom: 0; }
   .hero-meta { gap: 6px 16px; }
   .hero-meta .sep { display: none; }
 }
+
+/* --- hero split: copy + portrait ---------------------------------------- */
+.hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr);
+  gap: clamp(30px, 5vw, 64px);
+  align-items: center;
+}
+@media (max-width: 940px) {
+  .hero-split { grid-template-columns: 1fr; }
+  .hero-portrait { order: -1; justify-self: start; }
+}
+
+/* rotating conic ring around the photo */
+.hero-portrait { position: relative; width: clamp(196px, 26vw, 296px); }
+.hero-portrait::before {
+  content: "";
+  position: absolute; inset: -13px; border-radius: 50%;
+  background: conic-gradient(from 0deg, #3987e5, #7B6CF0, #d95926, #199e70, #3987e5);
+  animation: spin 11s linear infinite;
+  filter: blur(1px);
+}
+.hero-portrait::after {
+  content: "";
+  position: absolute; inset: -5px; border-radius: 50%; background: var(--bg);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hero-portrait img {
+  position: relative; z-index: 1;
+  width: 100%; aspect-ratio: 1; border-radius: 50%;
+  object-fit: cover; object-position: 50% 42%;
+  border: 3px solid var(--panel-2);
+  box-shadow: 0 26px 60px -22px rgba(0,0,0,.95);
+}
+
+/* availability badge on the photo */
+.portrait-badge {
+  position: absolute; z-index: 2; bottom: 6px; left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 15px; border-radius: 100px; white-space: nowrap;
+  background: rgba(8,11,18,.92); border: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+  font-size: 11.6px; font-weight: 700; letter-spacing: .07em;
+  text-transform: uppercase; color: var(--ink);
+}
+.portrait-badge .live {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+  box-shadow: 0 0 0 4px rgba(25,158,112,.22);
+  animation: blip 2.4s ease-in-out infinite;
+}
+
+/* small round portrait used elsewhere */
+.avatar {
+  width: 74px; height: 74px; border-radius: 50%; object-fit: cover;
+  object-position: 50% 42%; flex: 0 0 74px;
+  border: 2px solid var(--panel-3);
+}
+
+/* --- figure blocks for the animated SVG visuals ------------------------- */
+.figure {
+  position: relative; overflow: hidden;
+  border-radius: var(--radius);
+  background: linear-gradient(168deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line);
+  padding: clamp(16px, 2.6vw, 28px);
+  transition: transform .32s var(--ease), border-color .32s var(--ease), box-shadow .32s var(--ease);
+}
+.figure:hover { transform: translateY(-4px); border-color: var(--panel-3); box-shadow: var(--shadow); }
+.figure img { width: 100%; }
+.figure figcaption {
+  margin: 14px 2px 0; font-size: 13px; color: var(--ink-3); line-height: 1.5;
+}
+.section--light .figure { background: #FFFDF9; border-color: var(--cream-line); box-shadow: var(--shadow-lt); }
+.section--light .figure figcaption { color: #74604A; }
+
+.figure-grid {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 18px;
+  align-items: stretch;
+}
+@media (max-width: 940px) { .figure-grid { grid-template-columns: 1fr; } }
+
+/* --- skills filter ------------------------------------------------------ */
+.filter-bar {
+  display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 26px;
+  align-items: center;
+}
+.filter-btn {
+  font-family: inherit; font-size: 13px; font-weight: 650; cursor: pointer;
+  padding: 9px 16px; border-radius: 100px;
+  background: var(--cream-2); border: 1px solid var(--cream-line); color: #39424F;
+  transition: background .2s var(--ease), border-color .2s var(--ease),
+              color .2s var(--ease), transform .2s var(--bounce);
+}
+.filter-btn:hover { transform: translateY(-2px); border-color: var(--blue-l); }
+.filter-btn[aria-pressed="true"] {
+  background: var(--blue-l); border-color: var(--blue-l); color: #fff;
+}
+.filter-count { font-size: 12.5px; color: #74604A; margin-left: auto; font-variant-numeric: tabular-nums; }
+
+.skill-block[hidden] { display: none; }
+.skill-block { animation: pop .38s var(--ease) both; }
+@keyframes pop { from { opacity: 0; transform: scale(.97) translateY(8px); } }
+
+/* --- back to top -------------------------------------------------------- */
+.to-top {
+  position: fixed; right: 22px; bottom: 22px; z-index: 120;
+  width: 46px; height: 46px; border-radius: 50%; cursor: pointer;
+  display: grid; place-items: center;
+  background: rgba(14,19,29,.9); color: var(--ink);
+  border: 1px solid var(--line); backdrop-filter: blur(10px);
+  opacity: 0; transform: translateY(14px) scale(.9); pointer-events: none;
+  transition: opacity .28s var(--ease), transform .28s var(--bounce),
+              border-color .2s var(--ease), background .2s var(--ease);
+}
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { border-color: var(--blue); background: rgba(57,135,229,.22); }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
 
