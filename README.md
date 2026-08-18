@@ -5,7 +5,7 @@ requests (no CDN fonts, no analytics) — so it works offline and loads instantl
 
 ```
 index.html          Hero, highlights stat row, what-I-do cards, pipeline graphic
-experience.html     Timeline: Nagarro (Cox Automotive), VOIS, Accenture
+experience.html     Role timeline by employer + domain, and how I work
 skills.html         Skills grouped by job, as chips
 achievements.html   Awards, certifications, education, languages
 contact.html        Email, phone, LinkedIn, résumé, location, time zone
@@ -28,7 +28,7 @@ python -m http.server 8080
 ## Publish to GitHub Pages
 
 You need a **personal** github.com account for this (the machine's git is
-configured against Cox's enterprise GitHub, which is not public).
+configured against an enterprise GitHub instance, which is not public).
 
 1. Create a new **public** repo on github.com. To get the clean
    `https://<username>.github.io` URL, name it exactly `<username>.github.io`.
@@ -65,9 +65,18 @@ Settings → Pages.
 
 ## Notes
 
-- **Palette** — accent `#2E9FB2`, violet `#8A7EE0`, amber `#C98500`, validated
-  against the `#0B1117` dark surface for the lightness band, chroma floor,
-  colour-vision-deficiency separation and 3:1 contrast.
+- **No client or project names.** The site describes roles, domains, skills and
+  work delivered only — employers are named, engagements are not. Keep it that
+  way when editing. Note the linked résumé PDF is a *separate* document and is
+  not redacted.
+- **Palette** — dark surface `#080B12` with `#3987e5` / `#d95926` / `#199e70`;
+  cream surface `#F5F2EC` with `#2a78d6` / `#c9531d` / `#0f8f5c`. Both sets pass
+  the lightness band, chroma floor, colour-vision-deficiency separation and 3:1
+  contrast checks. (The previous teal failed the chroma floor — it measured as
+  grey, which is why it looked dull.)
+- **Layout rhythm** — alternating dark and cream sections, an uneven bento grid,
+  an animated aurora hero, a paused-on-hover tech marquee, count-up statistics
+  and a pointer-following spotlight on cards.
 - **Motion** — cross-document view transitions plus IntersectionObserver scroll
   reveals; all of it disabled under `prefers-reduced-motion: reduce`.
 - **No skill percentage bars** by design — invented proficiency numbers are a
