@@ -1,0 +1,79 @@
+# Govinda Rai — portfolio
+
+Static, dependency-free portfolio site. Five pages, no build step, no external
+requests (no CDN fonts, no analytics) — so it works offline and loads instantly.
+
+```
+index.html          Hero, highlights stat row, what-I-do cards, pipeline graphic
+experience.html     Timeline: Nagarro (Cox Automotive), VOIS, Accenture
+skills.html         Skills grouped by job, as chips
+achievements.html   Awards, certifications, education, languages
+contact.html        Email, phone, LinkedIn, résumé, location, time zone
+404.html            Custom not-found page
+assets/css/         Single stylesheet with design tokens
+assets/js/          Mobile nav, scroll reveal, active-link, footer year
+assets/img/         Monogram favicon, pipeline SVG, social preview card
+assets/files/       Résumé PDF (download target)
+```
+
+## Run locally
+
+Any static server works. With Python:
+
+```bash
+python -m http.server 8080
+# then open http://localhost:8080
+```
+
+## Publish to GitHub Pages
+
+You need a **personal** github.com account for this (the machine's git is
+configured against Cox's enterprise GitHub, which is not public).
+
+1. Create a new **public** repo on github.com. To get the clean
+   `https://<username>.github.io` URL, name it exactly `<username>.github.io`.
+   Any other name gives you `https://<username>.github.io/<repo>/`.
+
+2. Push this folder:
+
+   ```bash
+   cd govinda-portfolio
+   git init -b main
+   git add .
+   git commit -m "Add portfolio site"
+   git remote add origin https://github.com/<username>/<repo>.git
+   git push -u origin main
+   ```
+
+   Use a **Personal Access Token** as the password when prompted
+   (github.com → Settings → Developer settings → Tokens), or install GitHub CLI
+   and run `gh auth login`.
+
+3. In the repo: **Settings → Pages → Build and deployment → Source: Deploy from a
+   branch**, branch `main`, folder `/ (root)`. Save.
+
+4. Wait ~1 minute. Your URL appears at the top of that Settings → Pages screen.
+
+`.nojekyll` is already present, so GitHub serves the files as-is rather than
+running them through Jekyll.
+
+### Custom domain (optional)
+
+Add a `CNAME` file containing your domain (e.g. `govindarai.com`), point a DNS
+`CNAME` record at `<username>.github.io`, then tick **Enforce HTTPS** in
+Settings → Pages.
+
+## Notes
+
+- **Palette** — accent `#2E9FB2`, violet `#8A7EE0`, amber `#C98500`, validated
+  against the `#0B1117` dark surface for the lightness band, chroma floor,
+  colour-vision-deficiency separation and 3:1 contrast.
+- **Motion** — cross-document view transitions plus IntersectionObserver scroll
+  reveals; all of it disabled under `prefers-reduced-motion: reduce`.
+- **No skill percentage bars** by design — invented proficiency numbers are a
+  known résumé anti-pattern. Skills are grouped by the job they do instead.
+- **Updating the résumé PDF** — replace `assets/files/Govinda_Rai_Resume.pdf`;
+  the filename is referenced from every page's footer.
+- **Photo** — the site uses a `GR` monogram. To switch to a photo, drop a square
+  image at `assets/img/portrait.jpg` and replace the `.plate-mono` div in
+  `index.html` with `<img class="plate-photo" src="assets/img/portrait.jpg" alt="Govinda Rai">`.
