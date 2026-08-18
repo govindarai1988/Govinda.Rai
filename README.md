@@ -70,14 +70,18 @@ Settings → Pages.
   work delivered only — employers are named, engagements are not. Keep it that
   way when editing. Note the linked résumé PDF is a *separate* document and is
   not redacted.
-- **Palette** — dark surface `#080B12` with `#3987e5` / `#d95926` / `#199e70`;
-  cream surface `#F5F2EC` with `#2a78d6` / `#c9531d` / `#0f8f5c`. Both sets pass
-  the lightness band, chroma floor, colour-vision-deficiency separation and 3:1
-  contrast checks. (The previous teal failed the chroma floor — it measured as
-  grey, which is why it looked dull.)
-- **Layout rhythm** — alternating dark and cream sections, an uneven bento grid,
-  an animated aurora hero, a paused-on-hover tech marquee, count-up statistics
-  and a pointer-following spotlight on cards.
+- **Palette (light theme)** — page `#FBFAF7`, cards `#FFFFFF`, tinted band
+  `#F0EBE0`. Marks use the light-surface set `#2a78d6` / `#c9531d` / `#0f8f5c`,
+  which passes all six validator checks (lightness band, chroma floor, CVD
+  separation, normal-vision floor, 3:1 contrast). Text-weight variants are
+  stepped darker so body copy clears WCAG AA on every surface: `#1F68C2`
+  (5.3:1), `#B4491A` (4.5:1), `#0C7A4E` (4.5:1). Ink `#14181F` 17:1,
+  secondary `#414B59` 8.5:1, muted `#57616F` 5.3:1.
+- **Rhythm** — page → tinted band → page, with diagonal transitions, plus one
+  inverted dark band (the CTA) per page as a contrast anchor. `code-window.svg`
+  stays dark on purpose: it reads as an editor screenshot inside a white card.
+- **Layout** — uneven bento grid, animated aurora hero over a masked blueprint
+  grid, hover-pausable tech marquee, count-up statistics, pointer spotlight.
 - **Motion** — cross-document view transitions plus IntersectionObserver scroll
   reveals; all of it disabled under `prefers-reduced-motion: reduce`.
 - **No skill percentage bars** by design — invented proficiency numbers are a
